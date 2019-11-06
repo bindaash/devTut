@@ -1,0 +1,206 @@
+<?php
+ini_set('display_errors','on');
+error_reporting(E_ALL);
+
+include("../../config.inc.php"); 
+global $adb,$pquery;
+
+$connection =mysql_connect($dbconfig['db_server'], $dbconfig['db_username'], $dbconfig['db_password']) or die('Please contact biraj.sharma@jhunsinfotech.com !'); 
+mysql_select_db($dbconfig['db_name'], $connection);
+
+
+$THIS_DIR = dirname(__FILE__);
+if (file_exists($THIS_DIR.'/date_format.php') && file_exists($THIS_DIR.'/organisation_details.php')) { 
+	include("date_format.php"); include("organisation_details.php");
+}
+
+//echo require_once('../../include/database/PearDatabase.php'); 
+//echo require_once('../../include/utils/utils.php'); die('Ft');
+/* include autoloader */
+require_once '../autoload.inc.php';
+
+/* reference the Dompdf namespace */
+use Dompdf\Dompdf;
+
+/* instantiate and use the dompdf class */
+$dompdf = new Dompdf();
+	$html_to_pdf ='';
+	$slno=1;
+	
+$html_org ='<table width="100%" border="0">
+  <tr>
+	<td align="center"><img src="../../test/logo/'.$organisation_logoname.'" style="max-width:325px; max-height:90px;" /></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="width:585px;margin:0 auto;font-family:Arial, Helvetica, sans-serif;font-size:12px;background:#e1e7f3;padding:5px;line-height:3px;">
+ <tr>
+	<td align="left" valign="top">
+		<table align="center" width="100%" border="0" style="text-align:center;padding:0;margin:0;line-height:2px;">
+              <tr>
+                <td valign="top"><strong style="line-height: 27px;">'.$organisation_name.'</strong></td>
+              </tr>
+              <tr>
+                <td valign="top"><strong style="line-height: 27px;">'.$organisation_address.'</strong></td>
+              </tr>
+              <tr>
+                <td valign="top"><strong style="line-height: 27px;">'.$organisation_city.' '.$organisation_state.' '.$organisation_code.' '.$organisation_country.'</strong></td>
+              </tr>
+              <tr>
+                <td valign="top"><strong style="line-height: 27px;">Phone: '.$organisation_phone.' FAX: '.$organisation_fax.'</strong></td>
+              </tr>
+			  <tr>
+                <td valign="top"><strong style="line-height: 27px;">Email: '.$organisation_email.'</strong></td>
+              </tr>
+			  <tr>
+                <td valign="top"><strong style="line-height: 27px;">Website: '.$organisation_website.'</strong></td>
+              </tr>
+        </table></td>
+        </tr>
+        </table>'; 
+		
+$batch_id = $_REQUEST['batch_id'];		
+//$prd_id = $_REQUEST['product_id'] ? $_REQUEST['product_id'] : '2243';		
+//$salesOrder_id = $_REQUEST['sales_order_id'] ? $_REQUEST['sales_order_id'] : '2450';	
+$salesOrder_id ='2450';	
+$currency_id=$_REQUEST['currency_id'];
+$today=date("d M Y");
+	if($salesOrder_id != 0 && $salesOrder_id !=''){
+		$sql_sale = 'SELECT sales.currency_id, 
+						sales.salesorderid, 
+						sales.subject, 
+						sales.salesorder_no ,
+						sales.contactid , 
+						sales.accountid, 
+						invent.productid, 
+						invent.quantity , 
+						invent.sequence_no, 
+						prd.product_no, 
+						prd.productname, 
+						prd.productcode, 
+						prd.usageunit 
+					FROM vtiger_salesorder AS sales 
+						INNER JOIN vtiger_crmentity AS crm On crm.crmid = sales.salesorderid 
+						INNER JOIN vtiger_inventoryproductrel AS invent On invent.id = sales.salesorderid 
+						INNER JOIN vtiger_products AS prd On prd.productid = invent.productid 
+					WHERE crm.deleted = 0 AND salesorderid='.$salesOrder_id;
+		$query_sales = mysql_query($sql_sale);
+		$tot_record = mysql_num_rows($query_sales);	
+	} 
+	
+	$html_header ='<br><br><div class="col-lg-12 frt">
+		<table width="100%" border="0" class="small" cellspacing="1" cellpadding="3">
+	<tr>
+	<th style="font-weight:bold; text-align:left;"> <h1>Batch Report</h1> </th>
+	</tr>';
+	$html_subHeader ='<tr>
+	<th style="font-weight:bold; text-align:left;"><h3>Batch Name  : Batch Test</h3> </th>
+	</tr>
+	<tr>
+	<th style="font-weight:bold; text-align:left;"> <h3>Sales Order Number : SO3 </h3> </th>
+	</tr>
+	<tr>
+	<th style="font-weight:bold; text-align:left;"><h3>Batch Name  : '.$batch_name[0].' </h3> </th>
+	</tr>
+	<tr>
+	<th style="font-weight:bold; text-align:left;"><h3>Date: '.$today.'</h3></th>
+	</tr>
+	<tr>
+	<th style="font-weight:bold; text-align:left;"><h3>Total Record(s): '.$total_records.'</h3></th>
+	</tr>
+	</table></div>';
+	
+	$html_body_head = '<div class="col-lg-12 batch_report">   
+		<div class="table-responsive">          
+			<table width="100%" border="1" class="small" cellspacing="1" cellpadding="2">
+				<thead>
+				  <tr>
+					<th width="7%">Srl No.</th>
+					<th width="16%">Product Name</th>
+					<th width="8%">Molding</th>
+					<th width="10%">Shot Blasting</th>
+					<th width="10%">Fettling Grinding</th>
+					<th width="8%">Painting</th>
+					<th width="8%">Crating</th>
+					<th width="8%">WareHouse</th>
+					<th width="10%">Rejection</th>
+					<th width="15%">Total</th>
+				  </tr>
+				</thead><tbody>';
+	$counter =0;
+	while($sales_result = mysql_fetch_assoc($query_sales)){
+		$get_rel_batch = get_related_batch($sales_result['salesorderid']);
+		$batch_name[] = $get_rel_batch[$counter]['batch_name'];
+		echo"<pre>";print_r($get_rel_batch[$counter]); 
+		$html_body_data ='<tr>
+					<td>'. $counter+1 .'</td>
+					<td>Test demo</td>
+					<td>500</td>
+					<td>400</td>
+					<td>300</td>
+					<td>200</td>
+					<td>100</td>
+					<td>50</td>
+					<td>40</td>
+					<td>1200</td>
+				</tr>';
+		$counter++;		
+	}die('MRT');			
+echo $html; die;
+$html_to_link ='<link rel="stylesheet" href="../src/Css/style.css">
+<link rel="stylesheet" href="../src/Css/bootstrap.min.css">
+<div class="container">';
+$html_to_body =$html_org .$html_header .$html_subHeader .$html_body_head .$html_body_data;
+$html_to_foot ='</tbody></table></div></div></div>';
+$html_to_pdf = $html_to_link.$html_to_body.$html_to_foot;	
+
+//echo ($html_to_pdf);  die;
+$dompdf->loadHtml($html_to_pdf);
+
+/* Render the HTML as PDF */
+$dompdf->render();
+/* Output the generated PDF to Browser */
+$dompdf->stream();
+//============================================================+
+// END OF FILE
+//============================================================+
+
+function get_related_batch($id){ //2444
+	$sql_batch = "SELECT item.productid, 
+					ba.batch_name, 
+					ba.batch_id, 
+					ba.batch_qty,
+					mov.quantity, 
+					mov.select_frm, 
+					mov.select_to, 
+					mov.lineItem_type
+				FROM vtiger_batch_item as item
+				INNER JOIN vtiger_batch AS ba ON ba.batchid=item.id
+				INNER JOIN vtiger_movementrel AS mov ON mov.itemid=item.productid
+				WHERE item.id = 2444";
+	$select_batch=mysql_query($sql_batch);
+	$rel_inv_item = array();
+	$int =0;
+	while($result_batch=mysql_fetch_array($select_batch)){
+		$rel_inv_item[$int]['productid']=$result_batch['productid'];
+		$rel_inv_item[$int]['batch_name']=$result_batch['batch_name'];
+		$rel_inv_item[$int]['batch_qty']=$result_batch['batch_qty'];
+		$rel_inv_item[$int]['quantity']=$result_batch['quantity'];
+		$rel_inv_item[$int]['select_frm']=$result_batch['select_frm'];
+		$rel_inv_item[$int]['select_to']=$result_batch['select_to'];
+		$rel_inv_item[$int]['lineItem_type']=$result_batch['lineItem_type'];
+		$int++;
+	}
+	return $rel_inv_item; 
+}
+
+
+
+
+
+
+
+
+
+?>
+
+
