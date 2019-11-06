@@ -26872,3 +26872,499 @@ Wed Nov  6 11:00:37 2019,218 [5976] DEBUG VT - Prepared sql query being executed
 Wed Nov  6 11:00:37 2019,218 [5976] DEBUG VT - Prepared sql query parameters : []
 Wed Nov  6 11:00:37 2019,225 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
 Wed Nov  6 11:00:37 2019,225 [5976] DEBUG VT - Prepared sql query parameters : [14]
+Wed Nov  6 12:25:30 2019,220 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:25:30 2019,411 [5976] DEBUG user - Entering Users() method ...
+Wed Nov  6 12:25:30 2019,412 [5976] DEBUG VT - Entering getColumnFields(Users) method ...
+Wed Nov  6 12:25:30 2019,412 [5976] DEBUG VT - in getColumnFields Users
+Wed Nov  6 12:25:30 2019,412 [5976] DEBUG VT - Prepared sql query being executed : SELECT tabid, name, ownedby FROM vtiger_tab
+Wed Nov  6 12:25:30 2019,416 [5976] DEBUG VT - Prepared sql query being executed : SELECT tabid, fieldname, fieldid, fieldlabel, columnname, tablename, uitype, typeofdata, presence
+		FROM vtiger_field WHERE tabid in (?)
+Wed Nov  6 12:25:30 2019,416 [5976] DEBUG VT - Prepared sql query parameters : [29]
+Wed Nov  6 12:25:30 2019,425 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,426 [5976] DEBUG user - Exiting Users() method ...
+Wed Nov  6 12:25:30 2019,426 [5976] DEBUG VT - Entering getColumnFields(Users) method ...
+Wed Nov  6 12:25:30 2019,426 [5976] DEBUG VT - in getColumnFields Users
+Wed Nov  6 12:25:30 2019,427 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,437 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_tab
+Wed Nov  6 12:25:30 2019,445 [5976] DEBUG VT - Prepared sql query being executed : SELECT fieldname,modulename,tablename,entityidfield,entityidcolumn from vtiger_entityname
+Wed Nov  6 12:25:30 2019,522 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_organizationdetails WHERE organization_id=?
+Wed Nov  6 12:25:30 2019,523 [5976] DEBUG VT - Prepared sql query parameters : [1]
+Wed Nov  6 12:25:30 2019,531 [5976] DEBUG VT - Prepared sql query being executed : select * from vtiger_ws_entity where name=?
+Wed Nov  6 12:25:30 2019,531 [5976] DEBUG VT - Prepared sql query parameters : [Batch]
+Wed Nov  6 12:25:30 2019,535 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,535 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,536 [5976] DEBUG VT - Prepared sql query being executed : SELECT tabid, fieldname, fieldid, fieldlabel, columnname, tablename, uitype, typeofdata, presence
+		FROM vtiger_field WHERE tabid in (?)
+Wed Nov  6 12:25:30 2019,536 [5976] DEBUG VT - Prepared sql query parameters : [50]
+Wed Nov  6 12:25:30 2019,540 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,541 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:25:30 2019,541 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,541 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,542 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,544 [5976] DEBUG VT - Prepared sql query being executed : SELECT DISTINCT block, vtiger_field.tabid, name, blocklabel FROM vtiger_field INNER JOIN vtiger_blocks ON vtiger_blocks.blockid = vtiger_field.block INNER JOIN vtiger_tab ON vtiger_tab.tabid = vtiger_field.tabid WHERE vtiger_tab.name IN (?) AND vtiger_field.presence IN (0,2) ORDER BY block
+Wed Nov  6 12:25:30 2019,544 [5976] DEBUG VT - Prepared sql query parameters : [Batch]
+Wed Nov  6 12:25:30 2019,547 [5976] DEBUG VT - Prepared sql query being executed : select *, '0' as readonly from vtiger_field where tabid =? and block in (?,?) and displaytype in (1,2,3,4,5,6)
+Wed Nov  6 12:25:30 2019,547 [5976] DEBUG VT - Prepared sql query parameters : [50,121,131]
+Wed Nov  6 12:25:30 2019,554 [5976] DEBUG VT - Prepared sql query being executed : select * from vtiger_ws_fieldtype
+Wed Nov  6 12:25:30 2019,558 [5976] DEBUG VT - Prepared sql query being executed : SELECT relmodule AS type FROM vtiger_fieldmodulerel WHERE fieldid=? ORDER BY sequence ASC
+Wed Nov  6 12:25:30 2019,558 [5976] DEBUG VT - Prepared sql query parameters : [853]
+Wed Nov  6 12:25:30 2019,559 [5976] DEBUG VT - Entering getPermittedModuleNames() method ...
+Wed Nov  6 12:25:30 2019,560 [5976] DEBUG VT - Exiting getPermittedModuleNames method ...
+Wed Nov  6 12:25:30 2019,561 [5976] DEBUG VT - Prepared sql query being executed : select name,id,ismodule from vtiger_ws_entity
+Wed Nov  6 12:25:30 2019,563 [5976] INFO VT - PearDatabase ->ADODB fetchByAssoc return null
+Wed Nov  6 12:25:30 2019,563 [5976] DEBUG VT - Prepared sql query being executed : select * from vtiger_ws_entity
+Wed Nov  6 12:25:30 2019,572 [5976] DEBUG VT - Prepared sql query being executed : select table_name, webservice_entity_id from vtiger_ws_entity_tables
+Wed Nov  6 12:25:30 2019,603 [5976] DEBUG VT - Prepared sql query being executed : SELECT relmodule AS type FROM vtiger_fieldmodulerel WHERE fieldid=? ORDER BY sequence ASC
+Wed Nov  6 12:25:30 2019,604 [5976] DEBUG VT - Prepared sql query parameters : [854]
+Wed Nov  6 12:25:30 2019,616 [5976] DEBUG VT - Entering getColumnFields(SalesOrder) method ...
+Wed Nov  6 12:25:30 2019,616 [5976] DEBUG VT - in getColumnFields SalesOrder
+Wed Nov  6 12:25:30 2019,616 [5976] DEBUG VT - Prepared sql query being executed : SELECT tabid, fieldname, fieldid, fieldlabel, columnname, tablename, uitype, typeofdata, presence
+		FROM vtiger_field WHERE tabid in (?)
+Wed Nov  6 12:25:30 2019,617 [5976] DEBUG VT - Prepared sql query parameters : [22]
+Wed Nov  6 12:25:30 2019,626 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,627 [5976] DEBUG VT - Entering getColumnFields(SalesOrder) method ...
+Wed Nov  6 12:25:30 2019,627 [5976] DEBUG VT - in getColumnFields SalesOrder
+Wed Nov  6 12:25:30 2019,628 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,631 [5976] DEBUG VT - Prepared sql query being executed : SELECT DISTINCT block, vtiger_field.tabid, name, blocklabel FROM vtiger_field INNER JOIN vtiger_blocks ON vtiger_blocks.blockid = vtiger_field.block INNER JOIN vtiger_tab ON vtiger_tab.tabid = vtiger_field.tabid WHERE vtiger_tab.name IN (?) AND vtiger_field.presence IN (0,2) ORDER BY block
+Wed Nov  6 12:25:30 2019,631 [5976] DEBUG VT - Prepared sql query parameters : [SalesOrder]
+Wed Nov  6 12:25:30 2019,634 [5976] DEBUG VT - Prepared sql query being executed : select *, '0' as readonly from vtiger_field where tabid =? and block in (?,?,?,?,?,?) and displaytype in (1,2,3,4,5,6)
+Wed Nov  6 12:25:30 2019,634 [5976] DEBUG VT - Prepared sql query parameters : [22,61,63,65,66,85,114]
+Wed Nov  6 12:25:30 2019,651 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:25:30 2019,652 [5976] DEBUG VT - Prepared sql query parameters : [26]
+Wed Nov  6 12:25:30 2019,653 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:25:30 2019,654 [5976] DEBUG VT - Prepared sql query parameters : [27]
+Wed Nov  6 12:25:30 2019,655 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:25:30 2019,656 [5976] DEBUG VT - Prepared sql query parameters : [22]
+Wed Nov  6 12:25:30 2019,660 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:25:30 2019,661 [5976] DEBUG VT - Prepared sql query parameters : [24]
+Wed Nov  6 12:25:30 2019,662 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:25:30 2019,662 [5976] DEBUG VT - Prepared sql query parameters : [31]
+Wed Nov  6 12:25:30 2019,663 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:25:30 2019,663 [5976] DEBUG VT - Prepared sql query parameters : [37]
+Wed Nov  6 12:25:30 2019,668 [5976] DEBUG VT - Prepared sql query being executed : SELECT relmodule AS type FROM vtiger_fieldmodulerel WHERE fieldid=? ORDER BY sequence ASC
+Wed Nov  6 12:25:30 2019,668 [5976] DEBUG VT - Prepared sql query parameters : [685]
+Wed Nov  6 12:25:30 2019,676 [5976] DEBUG product - Entering Products() method ...
+Wed Nov  6 12:25:30 2019,676 [5976] DEBUG VT - Entering getColumnFields(Products) method ...
+Wed Nov  6 12:25:30 2019,676 [5976] DEBUG VT - in getColumnFields Products
+Wed Nov  6 12:25:30 2019,677 [5976] DEBUG VT - Prepared sql query being executed : SELECT tabid, fieldname, fieldid, fieldlabel, columnname, tablename, uitype, typeofdata, presence
+		FROM vtiger_field WHERE tabid in (?)
+Wed Nov  6 12:25:30 2019,677 [5976] DEBUG VT - Prepared sql query parameters : [14]
+Wed Nov  6 12:25:30 2019,683 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,684 [5976] DEBUG product - Exiting Product method ...
+Wed Nov  6 12:25:30 2019,684 [5976] DEBUG VT - Entering getColumnFields(Products) method ...
+Wed Nov  6 12:25:30 2019,684 [5976] DEBUG VT - in getColumnFields Products
+Wed Nov  6 12:25:30 2019,685 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,688 [5976] DEBUG VT - Prepared sql query being executed : SELECT DISTINCT block, vtiger_field.tabid, name, blocklabel FROM vtiger_field INNER JOIN vtiger_blocks ON vtiger_blocks.blockid = vtiger_field.block INNER JOIN vtiger_tab ON vtiger_tab.tabid = vtiger_field.tabid WHERE vtiger_tab.name IN (?) AND vtiger_field.presence IN (0,2) ORDER BY block
+Wed Nov  6 12:25:30 2019,688 [5976] DEBUG VT - Prepared sql query parameters : [Products]
+Wed Nov  6 12:25:30 2019,691 [5976] DEBUG VT - Prepared sql query being executed : select *, '0' as readonly from vtiger_field where tabid =? and block in (?,?,?,?,?) and displaytype in (1,2,3,4,5,6)
+Wed Nov  6 12:25:30 2019,691 [5976] DEBUG VT - Prepared sql query parameters : [14,31,32,36,33,35]
+Wed Nov  6 12:25:30 2019,708 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:25:30 2019,708 [5976] DEBUG VT - Prepared sql query parameters : [25]
+Wed Nov  6 12:25:30 2019,710 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:25:30 2019,710 [5976] DEBUG VT - Prepared sql query parameters : [31]
+Wed Nov  6 12:25:30 2019,716 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_field WHERE tabid=? ORDER BY sequence
+Wed Nov  6 12:25:30 2019,716 [5976] DEBUG VT - Prepared sql query parameters : [50]
+Wed Nov  6 12:25:30 2019,718 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,718 [5976] DEBUG VT - Prepared sql query parameters : [131]
+Wed Nov  6 12:25:30 2019,720 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,720 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,721 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,721 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,723 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,723 [5976] DEBUG VT - Prepared sql query parameters : [131]
+Wed Nov  6 12:25:30 2019,724 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,725 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,726 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,726 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,727 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,727 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,728 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,729 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,730 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,730 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,731 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,731 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,732 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,732 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,733 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,734 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,735 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,735 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,737 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,737 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,739 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,739 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,741 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,741 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,743 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,743 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,744 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:25:30 2019,745 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:25:30 2019,751 [5976] DEBUG VT - Prepared sql query being executed : SELECT fieldname, tablename, entityidfield FROM vtiger_entityname WHERE tabid = ?
+Wed Nov  6 12:25:30 2019,751 [5976] DEBUG VT - Prepared sql query parameters : [50]
+Wed Nov  6 12:25:30 2019,756 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,756 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,756 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,757 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:25:30 2019,757 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,757 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,758 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,759 [5976] DEBUG user - Entering Users() method ...
+Wed Nov  6 12:25:30 2019,759 [5976] DEBUG VT - Entering getColumnFields(Users) method ...
+Wed Nov  6 12:25:30 2019,759 [5976] DEBUG VT - in getColumnFields Users
+Wed Nov  6 12:25:30 2019,760 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,760 [5976] DEBUG user - Exiting Users() method ...
+Wed Nov  6 12:25:30 2019,760 [5976] DEBUG VT - Entering getColumnFields(Users) method ...
+Wed Nov  6 12:25:30 2019,760 [5976] DEBUG VT - in getColumnFields Users
+Wed Nov  6 12:25:30 2019,761 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,762 [5976] DEBUG VT - Prepared sql query being executed : select name_fields from vtiger_ws_entity_name where entity_id = ?
+Wed Nov  6 12:25:30 2019,762 [5976] DEBUG VT - Prepared sql query parameters : [20]
+Wed Nov  6 12:25:30 2019,764 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,764 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,765 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,765 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:25:30 2019,765 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,766 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,766 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,766 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,766 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,767 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,767 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:25:30 2019,767 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,768 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,768 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,768 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,768 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,769 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,769 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:25:30 2019,770 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,770 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,770 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,771 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,771 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,771 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,772 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:25:30 2019,772 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,772 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,772 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,773 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,773 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,773 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,774 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:25:30 2019,774 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,774 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,775 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,775 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,775 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,775 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,776 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:25:30 2019,776 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:25:30 2019,776 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:25:30 2019,776 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:25:30 2019,778 [5976] DEBUG VT - Prepared sql query being executed : SELECT vtiger_batch.batch_date, vtiger_batch.batch_qty, vtiger_crmentity.smownerid, vtiger_batch.bunch_weight, vtiger_batch.batch_id, vtiger_batch.batchid FROM vtiger_batch  INNER JOIN vtiger_crmentity ON vtiger_batch.batchid = vtiger_crmentity.crmid LEFT JOIN vtiger_users ON vtiger_crmentity.smownerid = vtiger_users.id LEFT JOIN vtiger_groups ON vtiger_crmentity.smownerid = vtiger_groups.groupid  WHERE vtiger_crmentity.deleted=0 AND vtiger_batch.batchid > 0 ORDER BY vtiger_crmentity.modifiedtime DESC LIMIT 0,21
+Wed Nov  6 12:25:30 2019,780 [5976] DEBUG VT - Prepared sql query being executed : SELECT first_name,last_name, id AS id FROM vtiger_users WHERE id IN (?,?)
+Wed Nov  6 12:25:30 2019,781 [5976] DEBUG VT - Prepared sql query parameters : [1,1]
+Wed Nov  6 12:25:30 2019,783 [5976] DEBUG VT - Entering getDisplayDate(2019-06-27) method ...
+Wed Nov  6 12:25:30 2019,784 [5976] DEBUG VT - Exiting getDisplayDate method ...
+Wed Nov  6 12:25:30 2019,785 [5976] DEBUG VT - Entering getDisplayDate(2019-06-11) method ...
+Wed Nov  6 12:25:30 2019,785 [5976] DEBUG VT - Exiting getDisplayDate method ...
+Wed Nov  6 12:25:30 2019,790 [5976] DEBUG VT - Prepared sql query being executed : SELECT batch_machine
+				  FROM vtiger_batch_machine
+					  INNER JOIN vtiger_role2picklist on vtiger_role2picklist.picklistvalueid = vtiger_batch_machine.picklist_valueid
+				  WHERE roleid=? and picklistid in (select picklistid from vtiger_picklist) order by sortorderid
+Wed Nov  6 12:25:30 2019,791 [5976] DEBUG VT - Prepared sql query parameters : [H2]
+Wed Nov  6 12:25:30 2019,795 [5976] DEBUG VT - Prepared sql query being executed : SHOW TABLES LIKE ?
+Wed Nov  6 12:25:30 2019,795 [5976] DEBUG VT - Prepared sql query parameters : [vtiger_batch_machine]
+Wed Nov  6 12:25:30 2019,801 [5976] DEBUG VT - Prepared sql query being executed : SELECT batch_machine, color FROM vtiger_batch_machine WHERE batch_machine IN (?,?,?,?,?,?,?)
+Wed Nov  6 12:25:30 2019,802 [5976] DEBUG VT - Prepared sql query parameters : [450,900-1,900-2,900-3,CM-1,CM-2,Diamatic
+]
+Wed Nov  6 12:25:30 2019,803 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,803 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,803 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,804 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,804 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,804 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,804 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,804 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,805 [5976] DEBUG VT - Prepared sql query being executed : SELECT batch_furnace
+				  FROM vtiger_batch_furnace
+					  INNER JOIN vtiger_role2picklist on vtiger_role2picklist.picklistvalueid = vtiger_batch_furnace.picklist_valueid
+				  WHERE roleid=? and picklistid in (select picklistid from vtiger_picklist) order by sortorderid
+Wed Nov  6 12:25:30 2019,805 [5976] DEBUG VT - Prepared sql query parameters : [H2]
+Wed Nov  6 12:25:30 2019,809 [5976] DEBUG VT - Prepared sql query being executed : SHOW TABLES LIKE ?
+Wed Nov  6 12:25:30 2019,809 [5976] DEBUG VT - Prepared sql query parameters : [vtiger_batch_furnace]
+Wed Nov  6 12:25:30 2019,815 [5976] DEBUG VT - Prepared sql query being executed : SELECT batch_furnace, color FROM vtiger_batch_furnace WHERE batch_furnace IN (?,?,?,?,?)
+Wed Nov  6 12:25:30 2019,815 [5976] DEBUG VT - Prepared sql query parameters : [1 Ton A,1 Ton B,1 Ton C,1.5 Ton A,1.5 Ton B]
+Wed Nov  6 12:25:30 2019,816 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,816 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,817 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,817 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,817 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,817 [5976] INFO VT - getNextRow
+Wed Nov  6 12:25:30 2019,824 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_role WHERE roleid = ?
+Wed Nov  6 12:25:30 2019,825 [5976] DEBUG VT - Prepared sql query parameters : [H2]
+Wed Nov  6 12:25:30 2019,826 [5976] DEBUG VT - Entering get_user_array(,ACTIVE,,) method ...
+Wed Nov  6 12:25:30 2019,827 [5976] DEBUG VT - Sharing is Public. All vtiger_users should be listed
+Wed Nov  6 12:25:30 2019,827 [5976] DEBUG VT - Prepared sql query being executed : SELECT id, user_name,first_name,last_name from vtiger_users WHERE status=? and (user_name != 'admin' OR is_owner=1) order by user_name ASC
+Wed Nov  6 12:25:30 2019,827 [5976] DEBUG VT - Prepared sql query parameters : [ACTIVE]
+Wed Nov  6 12:25:30 2019,828 [5976] INFO VT - PearDatabase ->ADODB fetchByAssoc return null
+Wed Nov  6 12:25:30 2019,829 [5976] DEBUG VT - Exiting get_user_array method ...
+Wed Nov  6 12:25:30 2019,829 [5976] DEBUG VT - Entering get_user_array(,ACTIVE,,) method ...
+Wed Nov  6 12:25:30 2019,829 [5976] DEBUG VT - Sharing is Public. All vtiger_users should be listed
+Wed Nov  6 12:25:30 2019,830 [5976] DEBUG VT - Prepared sql query being executed : SELECT groupid, groupname from vtiger_groups order by groupname ASC
+Wed Nov  6 12:25:30 2019,831 [5976] INFO VT - PearDatabase ->ADODB fetchByAssoc return null
+Wed Nov  6 12:25:30 2019,831 [5976] DEBUG VT - Exiting get_user_array method ...
+Wed Nov  6 12:25:30 2019,834 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE tabid=? ORDER BY sequence
+Wed Nov  6 12:25:30 2019,834 [5976] DEBUG VT - Prepared sql query parameters : [50]
+Wed Nov  6 12:25:30 2019,861 [5976] DEBUG VT - Prepared sql query being executed : SELECT label from vtiger_crmentity where crmid=?
+Wed Nov  6 12:25:30 2019,861 [5976] DEBUG VT - Prepared sql query parameters : [120]
+Wed Nov  6 12:25:30 2019,863 [5976] DEBUG VT - Prepared sql query being executed : SELECT label from vtiger_crmentity where crmid=?
+Wed Nov  6 12:25:30 2019,863 [5976] DEBUG VT - Prepared sql query parameters : [117]
+Wed Nov  6 12:27:56 2019,695 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:27:56 2019,835 [5976] DEBUG user - Entering Users() method ...
+Wed Nov  6 12:27:56 2019,835 [5976] DEBUG VT - Entering getColumnFields(Users) method ...
+Wed Nov  6 12:27:56 2019,835 [5976] DEBUG VT - in getColumnFields Users
+Wed Nov  6 12:27:56 2019,835 [5976] DEBUG VT - Prepared sql query being executed : SELECT tabid, name, ownedby FROM vtiger_tab
+Wed Nov  6 12:27:56 2019,840 [5976] DEBUG VT - Prepared sql query being executed : SELECT tabid, fieldname, fieldid, fieldlabel, columnname, tablename, uitype, typeofdata, presence
+		FROM vtiger_field WHERE tabid in (?)
+Wed Nov  6 12:27:56 2019,840 [5976] DEBUG VT - Prepared sql query parameters : [29]
+Wed Nov  6 12:27:56 2019,850 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:56 2019,851 [5976] DEBUG user - Exiting Users() method ...
+Wed Nov  6 12:27:56 2019,851 [5976] DEBUG VT - Entering getColumnFields(Users) method ...
+Wed Nov  6 12:27:56 2019,851 [5976] DEBUG VT - in getColumnFields Users
+Wed Nov  6 12:27:56 2019,851 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:56 2019,857 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_tab
+Wed Nov  6 12:27:56 2019,868 [5976] DEBUG VT - Prepared sql query being executed : SELECT fieldname,modulename,tablename,entityidfield,entityidcolumn from vtiger_entityname
+Wed Nov  6 12:27:56 2019,923 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_organizationdetails WHERE organization_id=?
+Wed Nov  6 12:27:56 2019,923 [5976] DEBUG VT - Prepared sql query parameters : [1]
+Wed Nov  6 12:27:56 2019,930 [5976] DEBUG VT - Prepared sql query being executed : select * from vtiger_ws_entity where name=?
+Wed Nov  6 12:27:56 2019,931 [5976] DEBUG VT - Prepared sql query parameters : [Batch]
+Wed Nov  6 12:27:56 2019,935 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:56 2019,935 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:56 2019,935 [5976] DEBUG VT - Prepared sql query being executed : SELECT tabid, fieldname, fieldid, fieldlabel, columnname, tablename, uitype, typeofdata, presence
+		FROM vtiger_field WHERE tabid in (?)
+Wed Nov  6 12:27:56 2019,935 [5976] DEBUG VT - Prepared sql query parameters : [50]
+Wed Nov  6 12:27:56 2019,940 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:56 2019,941 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:27:56 2019,941 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:56 2019,941 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:56 2019,941 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:56 2019,943 [5976] DEBUG VT - Prepared sql query being executed : SELECT DISTINCT block, vtiger_field.tabid, name, blocklabel FROM vtiger_field INNER JOIN vtiger_blocks ON vtiger_blocks.blockid = vtiger_field.block INNER JOIN vtiger_tab ON vtiger_tab.tabid = vtiger_field.tabid WHERE vtiger_tab.name IN (?) AND vtiger_field.presence IN (0,2) ORDER BY block
+Wed Nov  6 12:27:56 2019,943 [5976] DEBUG VT - Prepared sql query parameters : [Batch]
+Wed Nov  6 12:27:56 2019,945 [5976] DEBUG VT - Prepared sql query being executed : select *, '0' as readonly from vtiger_field where tabid =? and block in (?,?) and displaytype in (1,2,3,4,5,6)
+Wed Nov  6 12:27:56 2019,945 [5976] DEBUG VT - Prepared sql query parameters : [50,121,131]
+Wed Nov  6 12:27:56 2019,952 [5976] DEBUG VT - Prepared sql query being executed : select * from vtiger_ws_fieldtype
+Wed Nov  6 12:27:56 2019,955 [5976] DEBUG VT - Prepared sql query being executed : SELECT relmodule AS type FROM vtiger_fieldmodulerel WHERE fieldid=? ORDER BY sequence ASC
+Wed Nov  6 12:27:56 2019,955 [5976] DEBUG VT - Prepared sql query parameters : [853]
+Wed Nov  6 12:27:56 2019,956 [5976] DEBUG VT - Entering getPermittedModuleNames() method ...
+Wed Nov  6 12:27:56 2019,957 [5976] DEBUG VT - Exiting getPermittedModuleNames method ...
+Wed Nov  6 12:27:56 2019,957 [5976] DEBUG VT - Prepared sql query being executed : select name,id,ismodule from vtiger_ws_entity
+Wed Nov  6 12:27:56 2019,959 [5976] INFO VT - PearDatabase ->ADODB fetchByAssoc return null
+Wed Nov  6 12:27:56 2019,960 [5976] DEBUG VT - Prepared sql query being executed : select * from vtiger_ws_entity
+Wed Nov  6 12:27:56 2019,968 [5976] DEBUG VT - Prepared sql query being executed : select table_name, webservice_entity_id from vtiger_ws_entity_tables
+Wed Nov  6 12:27:56 2019,997 [5976] DEBUG VT - Prepared sql query being executed : SELECT relmodule AS type FROM vtiger_fieldmodulerel WHERE fieldid=? ORDER BY sequence ASC
+Wed Nov  6 12:27:56 2019,997 [5976] DEBUG VT - Prepared sql query parameters : [854]
+Wed Nov  6 12:27:57 2019,005 [5976] DEBUG VT - Entering getColumnFields(SalesOrder) method ...
+Wed Nov  6 12:27:57 2019,005 [5976] DEBUG VT - in getColumnFields SalesOrder
+Wed Nov  6 12:27:57 2019,005 [5976] DEBUG VT - Prepared sql query being executed : SELECT tabid, fieldname, fieldid, fieldlabel, columnname, tablename, uitype, typeofdata, presence
+		FROM vtiger_field WHERE tabid in (?)
+Wed Nov  6 12:27:57 2019,005 [5976] DEBUG VT - Prepared sql query parameters : [22]
+Wed Nov  6 12:27:57 2019,015 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,016 [5976] DEBUG VT - Entering getColumnFields(SalesOrder) method ...
+Wed Nov  6 12:27:57 2019,016 [5976] DEBUG VT - in getColumnFields SalesOrder
+Wed Nov  6 12:27:57 2019,016 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,018 [5976] DEBUG VT - Prepared sql query being executed : SELECT DISTINCT block, vtiger_field.tabid, name, blocklabel FROM vtiger_field INNER JOIN vtiger_blocks ON vtiger_blocks.blockid = vtiger_field.block INNER JOIN vtiger_tab ON vtiger_tab.tabid = vtiger_field.tabid WHERE vtiger_tab.name IN (?) AND vtiger_field.presence IN (0,2) ORDER BY block
+Wed Nov  6 12:27:57 2019,018 [5976] DEBUG VT - Prepared sql query parameters : [SalesOrder]
+Wed Nov  6 12:27:57 2019,020 [5976] DEBUG VT - Prepared sql query being executed : select *, '0' as readonly from vtiger_field where tabid =? and block in (?,?,?,?,?,?) and displaytype in (1,2,3,4,5,6)
+Wed Nov  6 12:27:57 2019,020 [5976] DEBUG VT - Prepared sql query parameters : [22,61,63,65,66,85,114]
+Wed Nov  6 12:27:57 2019,042 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:27:57 2019,042 [5976] DEBUG VT - Prepared sql query parameters : [26]
+Wed Nov  6 12:27:57 2019,043 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:27:57 2019,043 [5976] DEBUG VT - Prepared sql query parameters : [27]
+Wed Nov  6 12:27:57 2019,044 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:27:57 2019,044 [5976] DEBUG VT - Prepared sql query parameters : [22]
+Wed Nov  6 12:27:57 2019,048 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:27:57 2019,048 [5976] DEBUG VT - Prepared sql query parameters : [24]
+Wed Nov  6 12:27:57 2019,049 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:27:57 2019,049 [5976] DEBUG VT - Prepared sql query parameters : [31]
+Wed Nov  6 12:27:57 2019,050 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:27:57 2019,050 [5976] DEBUG VT - Prepared sql query parameters : [37]
+Wed Nov  6 12:27:57 2019,053 [5976] DEBUG VT - Prepared sql query being executed : SELECT relmodule AS type FROM vtiger_fieldmodulerel WHERE fieldid=? ORDER BY sequence ASC
+Wed Nov  6 12:27:57 2019,053 [5976] DEBUG VT - Prepared sql query parameters : [685]
+Wed Nov  6 12:27:57 2019,059 [5976] DEBUG product - Entering Products() method ...
+Wed Nov  6 12:27:57 2019,059 [5976] DEBUG VT - Entering getColumnFields(Products) method ...
+Wed Nov  6 12:27:57 2019,059 [5976] DEBUG VT - in getColumnFields Products
+Wed Nov  6 12:27:57 2019,060 [5976] DEBUG VT - Prepared sql query being executed : SELECT tabid, fieldname, fieldid, fieldlabel, columnname, tablename, uitype, typeofdata, presence
+		FROM vtiger_field WHERE tabid in (?)
+Wed Nov  6 12:27:57 2019,060 [5976] DEBUG VT - Prepared sql query parameters : [14]
+Wed Nov  6 12:27:57 2019,065 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,065 [5976] DEBUG product - Exiting Product method ...
+Wed Nov  6 12:27:57 2019,065 [5976] DEBUG VT - Entering getColumnFields(Products) method ...
+Wed Nov  6 12:27:57 2019,065 [5976] DEBUG VT - in getColumnFields Products
+Wed Nov  6 12:27:57 2019,066 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,069 [5976] DEBUG VT - Prepared sql query being executed : SELECT DISTINCT block, vtiger_field.tabid, name, blocklabel FROM vtiger_field INNER JOIN vtiger_blocks ON vtiger_blocks.blockid = vtiger_field.block INNER JOIN vtiger_tab ON vtiger_tab.tabid = vtiger_field.tabid WHERE vtiger_tab.name IN (?) AND vtiger_field.presence IN (0,2) ORDER BY block
+Wed Nov  6 12:27:57 2019,069 [5976] DEBUG VT - Prepared sql query parameters : [Products]
+Wed Nov  6 12:27:57 2019,071 [5976] DEBUG VT - Prepared sql query being executed : select *, '0' as readonly from vtiger_field where tabid =? and block in (?,?,?,?,?) and displaytype in (1,2,3,4,5,6)
+Wed Nov  6 12:27:57 2019,071 [5976] DEBUG VT - Prepared sql query parameters : [14,31,32,36,33,35]
+Wed Nov  6 12:27:57 2019,084 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:27:57 2019,084 [5976] DEBUG VT - Prepared sql query parameters : [25]
+Wed Nov  6 12:27:57 2019,085 [5976] DEBUG VT - Prepared sql query being executed : select type from vtiger_ws_referencetype where fieldtypeid=?
+Wed Nov  6 12:27:57 2019,086 [5976] DEBUG VT - Prepared sql query parameters : [31]
+Wed Nov  6 12:27:57 2019,091 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_field WHERE tabid=? ORDER BY sequence
+Wed Nov  6 12:27:57 2019,092 [5976] DEBUG VT - Prepared sql query parameters : [50]
+Wed Nov  6 12:27:57 2019,093 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,093 [5976] DEBUG VT - Prepared sql query parameters : [131]
+Wed Nov  6 12:27:57 2019,095 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,095 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,096 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,096 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,098 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,098 [5976] DEBUG VT - Prepared sql query parameters : [131]
+Wed Nov  6 12:27:57 2019,099 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,099 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,100 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,101 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,102 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,102 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,103 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,103 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,105 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,105 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,106 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,106 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,107 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,108 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,109 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,109 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,110 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,110 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,112 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,112 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,113 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,113 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,115 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,115 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,117 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,117 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,118 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE blockid=?
+Wed Nov  6 12:27:57 2019,118 [5976] DEBUG VT - Prepared sql query parameters : [121]
+Wed Nov  6 12:27:57 2019,124 [5976] DEBUG VT - Prepared sql query being executed : SELECT fieldname, tablename, entityidfield FROM vtiger_entityname WHERE tabid = ?
+Wed Nov  6 12:27:57 2019,124 [5976] DEBUG VT - Prepared sql query parameters : [50]
+Wed Nov  6 12:27:57 2019,127 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,127 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,127 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,128 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:27:57 2019,128 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,128 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,129 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,129 [5976] DEBUG user - Entering Users() method ...
+Wed Nov  6 12:27:57 2019,129 [5976] DEBUG VT - Entering getColumnFields(Users) method ...
+Wed Nov  6 12:27:57 2019,130 [5976] DEBUG VT - in getColumnFields Users
+Wed Nov  6 12:27:57 2019,130 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,130 [5976] DEBUG user - Exiting Users() method ...
+Wed Nov  6 12:27:57 2019,131 [5976] DEBUG VT - Entering getColumnFields(Users) method ...
+Wed Nov  6 12:27:57 2019,131 [5976] DEBUG VT - in getColumnFields Users
+Wed Nov  6 12:27:57 2019,131 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,132 [5976] DEBUG VT - Prepared sql query being executed : select name_fields from vtiger_ws_entity_name where entity_id = ?
+Wed Nov  6 12:27:57 2019,133 [5976] DEBUG VT - Prepared sql query parameters : [20]
+Wed Nov  6 12:27:57 2019,134 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,134 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,134 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,134 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:27:57 2019,135 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,135 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,135 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,135 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,135 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,136 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,136 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:27:57 2019,136 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,136 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,136 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,137 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,137 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,137 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,137 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:27:57 2019,137 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,138 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,138 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,138 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,138 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,139 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,139 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:27:57 2019,139 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,139 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,139 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,140 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,140 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,140 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,140 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:27:57 2019,140 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,140 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,141 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,141 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,141 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,141 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,141 [5976] INFO VT - PearDatabase ->ADODB disconnect
+Wed Nov  6 12:27:57 2019,142 [5976] DEBUG VT - Entering getColumnFields(Batch) method ...
+Wed Nov  6 12:27:57 2019,142 [5976] DEBUG VT - in getColumnFields Batch
+Wed Nov  6 12:27:57 2019,142 [5976] DEBUG VT - Exiting getColumnFields method ...
+Wed Nov  6 12:27:57 2019,142 [5976] DEBUG VT - Prepared sql query being executed : SELECT vtiger_batch.batch_date, vtiger_batch.batch_qty, vtiger_crmentity.smownerid, vtiger_batch.bunch_weight, vtiger_batch.batch_id, vtiger_batch.batchid FROM vtiger_batch  INNER JOIN vtiger_crmentity ON vtiger_batch.batchid = vtiger_crmentity.crmid LEFT JOIN vtiger_users ON vtiger_crmentity.smownerid = vtiger_users.id LEFT JOIN vtiger_groups ON vtiger_crmentity.smownerid = vtiger_groups.groupid  WHERE vtiger_crmentity.deleted=0 AND vtiger_batch.batchid > 0 ORDER BY vtiger_crmentity.modifiedtime DESC LIMIT 0,21
+Wed Nov  6 12:27:57 2019,144 [5976] DEBUG VT - Prepared sql query being executed : SELECT first_name,last_name, id AS id FROM vtiger_users WHERE id IN (?,?)
+Wed Nov  6 12:27:57 2019,144 [5976] DEBUG VT - Prepared sql query parameters : [1,1]
+Wed Nov  6 12:27:57 2019,146 [5976] DEBUG VT - Entering getDisplayDate(2019-06-27) method ...
+Wed Nov  6 12:27:57 2019,146 [5976] DEBUG VT - Exiting getDisplayDate method ...
+Wed Nov  6 12:27:57 2019,147 [5976] DEBUG VT - Entering getDisplayDate(2019-06-11) method ...
+Wed Nov  6 12:27:57 2019,147 [5976] DEBUG VT - Exiting getDisplayDate method ...
+Wed Nov  6 12:27:57 2019,153 [5976] DEBUG VT - Prepared sql query being executed : SELECT batch_machine
+				  FROM vtiger_batch_machine
+					  INNER JOIN vtiger_role2picklist on vtiger_role2picklist.picklistvalueid = vtiger_batch_machine.picklist_valueid
+				  WHERE roleid=? and picklistid in (select picklistid from vtiger_picklist) order by sortorderid
+Wed Nov  6 12:27:57 2019,153 [5976] DEBUG VT - Prepared sql query parameters : [H2]
+Wed Nov  6 12:27:57 2019,156 [5976] DEBUG VT - Prepared sql query being executed : SHOW TABLES LIKE ?
+Wed Nov  6 12:27:57 2019,157 [5976] DEBUG VT - Prepared sql query parameters : [vtiger_batch_machine]
+Wed Nov  6 12:27:57 2019,162 [5976] DEBUG VT - Prepared sql query being executed : SELECT batch_machine, color FROM vtiger_batch_machine WHERE batch_machine IN (?,?,?,?,?,?,?)
+Wed Nov  6 12:27:57 2019,162 [5976] DEBUG VT - Prepared sql query parameters : [450,900-1,900-2,900-3,CM-1,CM-2,Diamatic
+]
+Wed Nov  6 12:27:57 2019,163 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,163 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,164 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,164 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,164 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,164 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,165 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,165 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,166 [5976] DEBUG VT - Prepared sql query being executed : SELECT batch_furnace
+				  FROM vtiger_batch_furnace
+					  INNER JOIN vtiger_role2picklist on vtiger_role2picklist.picklistvalueid = vtiger_batch_furnace.picklist_valueid
+				  WHERE roleid=? and picklistid in (select picklistid from vtiger_picklist) order by sortorderid
+Wed Nov  6 12:27:57 2019,166 [5976] DEBUG VT - Prepared sql query parameters : [H2]
+Wed Nov  6 12:27:57 2019,168 [5976] DEBUG VT - Prepared sql query being executed : SHOW TABLES LIKE ?
+Wed Nov  6 12:27:57 2019,169 [5976] DEBUG VT - Prepared sql query parameters : [vtiger_batch_furnace]
+Wed Nov  6 12:27:57 2019,174 [5976] DEBUG VT - Prepared sql query being executed : SELECT batch_furnace, color FROM vtiger_batch_furnace WHERE batch_furnace IN (?,?,?,?,?)
+Wed Nov  6 12:27:57 2019,174 [5976] DEBUG VT - Prepared sql query parameters : [1 Ton A,1 Ton B,1 Ton C,1.5 Ton A,1.5 Ton B]
+Wed Nov  6 12:27:57 2019,175 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,175 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,175 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,175 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,176 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,176 [5976] INFO VT - getNextRow
+Wed Nov  6 12:27:57 2019,182 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_role WHERE roleid = ?
+Wed Nov  6 12:27:57 2019,183 [5976] DEBUG VT - Prepared sql query parameters : [H2]
+Wed Nov  6 12:27:57 2019,183 [5976] DEBUG VT - Entering get_user_array(,ACTIVE,,) method ...
+Wed Nov  6 12:27:57 2019,184 [5976] DEBUG VT - Sharing is Public. All vtiger_users should be listed
+Wed Nov  6 12:27:57 2019,184 [5976] DEBUG VT - Prepared sql query being executed : SELECT id, user_name,first_name,last_name from vtiger_users WHERE status=? and (user_name != 'admin' OR is_owner=1) order by user_name ASC
+Wed Nov  6 12:27:57 2019,185 [5976] DEBUG VT - Prepared sql query parameters : [ACTIVE]
+Wed Nov  6 12:27:57 2019,186 [5976] INFO VT - PearDatabase ->ADODB fetchByAssoc return null
+Wed Nov  6 12:27:57 2019,186 [5976] DEBUG VT - Exiting get_user_array method ...
+Wed Nov  6 12:27:57 2019,186 [5976] DEBUG VT - Entering get_user_array(,ACTIVE,,) method ...
+Wed Nov  6 12:27:57 2019,187 [5976] DEBUG VT - Sharing is Public. All vtiger_users should be listed
+Wed Nov  6 12:27:57 2019,187 [5976] DEBUG VT - Prepared sql query being executed : SELECT groupid, groupname from vtiger_groups order by groupname ASC
+Wed Nov  6 12:27:57 2019,188 [5976] INFO VT - PearDatabase ->ADODB fetchByAssoc return null
+Wed Nov  6 12:27:57 2019,189 [5976] DEBUG VT - Exiting get_user_array method ...
+Wed Nov  6 12:27:57 2019,193 [5976] DEBUG VT - Prepared sql query being executed : SELECT * FROM vtiger_blocks WHERE tabid=? ORDER BY sequence
+Wed Nov  6 12:27:57 2019,193 [5976] DEBUG VT - Prepared sql query parameters : [50]
+Wed Nov  6 12:27:57 2019,218 [5976] DEBUG VT - Prepared sql query being executed : SELECT label from vtiger_crmentity where crmid=?
+Wed Nov  6 12:27:57 2019,219 [5976] DEBUG VT - Prepared sql query parameters : [120]
+Wed Nov  6 12:27:57 2019,220 [5976] DEBUG VT - Prepared sql query being executed : SELECT label from vtiger_crmentity where crmid=?
+Wed Nov  6 12:27:57 2019,220 [5976] DEBUG VT - Prepared sql query parameters : [117]
