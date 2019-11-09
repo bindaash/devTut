@@ -1,2 +1,0 @@
-# devTut
-Tutorials
