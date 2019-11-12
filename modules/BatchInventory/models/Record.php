@@ -10,29 +10,31 @@
 
 class BatchInventory_Record_Model extends Vtiger_Record_Model {
 	
-	function getProducts() {
+	function getItemBatch() {
 		$relatedProducts = getAssociatedProducts($this->getModuleName(), $this->getEntity());
-		//echo"<pre>";print_r('Hello'); exit('For');
 		$productsCount = count($relatedProducts);
 		$productIdsList = array();
+		//echo"<pre>";print_r($relatedProducts[1]); exit('2nd Step');
 		for ($i=1;$i<=$productsCount; $i++) {
 			$product = $relatedProducts[$i];
-			$productId = $product['hdnProductId'.$i];
-			if ($relatedProducts[$i]['lineItemT'.$i] == 'Products') {
+			$productId = $product['hdnBatchId'.$i];
+			if ($relatedProducts[$i]['lineItemT'.$i] == 'Batch') {
 				$productIdsList[] = $productId;
+				//echo"<pre>";print_r($productIdsList); 
 			}
-		} 
-		if ($productIdsList) {
-			$imageDetailsList = Products_Record_Model::getProductsImageDetails($productIdsList);
+		} //exit('2nd Step');
+		 if ($productIdsList) {
+			$imageDetailsList = Products_Record_Model::getItemBatchImageDetails($productIdsList);
 			for ($i=1; $i<=$productsCount; $i++) {
 				$product = $relatedProducts[$i];
-				$productId = $product['hdnProductId'.$i];
+				$productId = $product['hdnBatchId'.$i];
 				$imageDetails = $imageDetailsList[$productId];
 				if ($imageDetails) {
-					$relatedProducts[$i]['productImage'.$i] = $imageDetails[0]['path'].'_'.$imageDetails[0]['orgname'];
+					$relatedProducts[$i]['batchtImage'.$i] = $imageDetails[0]['path'].'_'.$imageDetails[0]['orgname'];
 				}
 			}
-		}
+		} 
+		//echo"<pre>";print_r($relatedProducts); exit('2nd Step');
 		return $relatedProducts;
 	}
 	

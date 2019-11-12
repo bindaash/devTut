@@ -105,7 +105,7 @@ function getAssociatedProducts($module, $focus, $seid = '', $refModuleName = fal
 
 	// DG 15 Aug 2006
 	// Add "ORDER BY sequence_no" to retain add order on all inventoryproductrel items
-	 
+	//echo"<pre>";print_r($module); die('Utils'); 
 	if (in_array($module, $inventoryModules))
 	{
 		$query="SELECT
@@ -181,14 +181,18 @@ function getAssociatedProducts($module, $focus, $seid = '', $refModuleName = fal
 			$params = array($seid);
 	} 
 	elseif($module == 'BatchInventory'){
-		$query='SELECT vtiger_products.productid, vtiger_products.productname, vtiger_products.product_no AS productcode, 
-					vtiger_crmentity.deleted, "Products" AS entitytype,
+		$query='SELECT vtiger_batch.batchid, 
+					vtiger_batch.batch_id AS itembname, 
+					vtiger_batch.batch_qty AS batchQty, 
+					vtiger_crmentity.deleted, 
+					"Batch" AS entitytype, 
 					vtiger_movementrel.*
 					FROM vtiger_movementrel
 					LEFT JOIN vtiger_crmentity ON vtiger_crmentity.crmid=vtiger_movementrel.itemid
-					LEFT JOIN vtiger_products ON vtiger_products.productid=vtiger_movementrel.itemid
+					LEFT JOIN vtiger_batch ON vtiger_batch.batchid=vtiger_movementrel.itemid
 					WHERE id=? ORDER BY sequence_no';
-			$params = array($focus->id);
+		$params = array($focus->id); 
+		//echo $focus->id; die('HT');
 	}
 	elseif($module == 'Rejection'){
 			$query='SELECT vtiger_products.productid, 
@@ -223,10 +227,11 @@ function getAssociatedProducts($module, $focus, $seid = '', $refModuleName = fal
 		$params = array($focus->id);		
 	}
 	
-	
-	$result = $adb->pquery($query, $params);
+	$result = $adb->pquery($query, $params); 
 	$num_rows=$adb->num_rows($result); 
-	
+	//$bName=$adb->query_result($result, 0, 'itembname');
+	//echo"<pre>";print_r($adb->fetch_array($result)); die('Biraj');
+	//print_r($bName); die('Biraj');
 	for($i=1;$i<=$num_rows;$i++)
 	{
 		$deleted = $adb->query_result($result,$i-1,'deleted');
@@ -243,12 +248,15 @@ function getAssociatedProducts($module, $focus, $seid = '', $refModuleName = fal
 		$purchaseCost = $adb->query_result($result,$i-1,'purchase_cost');
 		$margin = $adb->query_result($result,$i-1,'margin');
 		$isSubProductsViewable = $adb->query_result($result, $i-1, 'is_subproducts_viewable');
-		//Added by biraj sharma on date 23042019
-		$select_frm = $adb->query_result($result,$i-1,'select_frm');
-		$select_to = $adb->query_result($result,$i-1,'select_to');
-		$rej_reason = $adb->query_result($result,$i-1,'rej_reason'); 
+		//Added by biraj sharma on date 23042019 Prod Move
+		$select_frm = $adb->query_result($result,$i-1,'select_frm'); 
+		$select_to = $adb->query_result($result,$i-1,'select_to');  
+		$itembname = $adb->query_result($result,$i-1,'itembname'); 
+		$hdnBatchId = $adb->query_result($result,$i-1,'itemid'); 
 		//Added by biraj sharma on date 03062019 for dispatch quantity fetch in detail
-		$disp_quantity = $adb->query_result($result,$i-1,'quantity'); 
+		$rej_reason = $adb->query_result($result,$i-1,'rej_reason');
+		//$disp_quantity = $adb->query_result($result,$i-1,'quantity'); 
+		$batchqty = $adb->query_result($result,$i-1,'quantity'); 
 		
 		if ($purchaseCost) {
 			$product_Detail[$i]['purchaseCost'.$i] = number_format($purchaseCost, $no_of_decimal_places, '.', '');
@@ -282,9 +290,12 @@ function getAssociatedProducts($module, $focus, $seid = '', $refModuleName = fal
 			$product_Detail[$i]['delRow'.$i]="Del";
 		}
 		//BatchInventory Dropdown not blanks
-		if($select_frm || $select_to != ''){
+		if($select_frm != '' || $select_to != '' || $itembname != '' || $batchqty != '' || $hdnBatchId !=''){
 		$product_Detail[$i]['prd_mov_select_frm'.$i]=$select_frm;
 		$product_Detail[$i]['prd_mov_select_to'.$i]=$select_to;
+		$product_Detail[$i]['prd_mov_itBatchName'.$i]=$itembname;
+		$product_Detail[$i]['prd_mov_qty'.$i]=$batchqty;
+		$product_Detail[$i]['hdnItemId'.$i]=$hdnBatchId;
 		}
 		//Rejection Dropdown not blanks
 		if($rej_reason != ''){
@@ -697,7 +708,7 @@ function getAssociatedBatch($module, $focus, $seid = '', $refModuleName = false)
 		$batch_Detail[$i]['batchName'.$i] = from_html($batch_name);
 		$batch_Detail[$i]['batchcode'.$i] = from_html($hdnBatchcode);
 	}
-	//echo"<pre>";print_r($batch_Detail); exit('Main');
+	echo"<pre>";print_r($batch_Detail); exit('Main');
 	return $batch_Detail;
 
 }

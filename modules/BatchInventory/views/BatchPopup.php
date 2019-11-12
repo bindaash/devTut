@@ -7,7 +7,7 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  ************************************************************************************/
-ini_set('display_errors','on'); error_reporting(E_ERROR & ~E_STRICT); 
+//ini_set('display_errors','on'); error_reporting(E_ERROR & ~E_STRICT); 
 
 class BatchInventory_BatchPopup_View extends Vtiger_Popup_View {
 
@@ -31,6 +31,7 @@ class BatchInventory_BatchPopup_View extends Vtiger_Popup_View {
 		$viewer->assign('MODULE_NAME', $moduleName);
 		$viewer->view('Popup.tpl', $moduleName);
 		//echo"<pre>"; print_r($viewer); exit(0);
+		
 	}
 
 	/*
@@ -56,10 +57,10 @@ class BatchInventory_BatchPopup_View extends Vtiger_Popup_View {
 		$getUrl = $request->get('get_url');
 
 		//Check whether the request is in multi select mode
-		$multiSelectMode = $request->get('multi_select');
+		/* $multiSelectMode = $request->get('multi_select');
 		if(empty($multiSelectMode)) {
 			$multiSelectMode = false;
-		}
+		} */
 
 		if(empty($cvId)) {
 			$cvId = '0';

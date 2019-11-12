@@ -3,6 +3,7 @@
 {assign var=BLOCK_FIELDS value=$RECORD_STRUCTURE.$LINE_ITEM_BLOCK_LABEL}
 {assign var=BLOCK_LABEL value=$LINE_ITEM_BLOCK_LABEL}
 {assign var="LINE_ITEM_DETAIL" value=$RELATED_PRODUCTS}
+{*$RELATED_PRODUCTS|@print_r*}
 <input type="hidden" class="isCustomFieldExists" value="false">
 <div class="details block">
     <div class="lineItemTableDiv">
@@ -32,11 +33,11 @@
 				{*$LINE_ITEM_DETAIL|@var_dump*}
 				<tr>
 					<td>
-					{$LINE_ITEM_DETAIL["productName$INDEX"]}
+					{$LINE_ITEM_DETAIL["prd_mov_itBatchName$INDEX"]}
 					</td>
 					
 					<td>
-					{$LINE_ITEM_DETAIL["qty$INDEX"]}
+					{$LINE_ITEM_DETAIL["prd_mov_qty$INDEX"]}
 					</td>
 					<td>
 					{$LINE_ITEM_DETAIL["prd_mov_select_frm$INDEX"]}

@@ -17,9 +17,6 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
     numOfLineItems : false,
     customLineItemFields : false,
     customFieldsDefaultValues : false,
-    //numOfCurrencyDecimals : false,
-    //regionElement : false,
-	//currencyElement : false,
     
     lineItemDetectingClass : 'lineItemRow',
     
@@ -50,17 +47,12 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
 			//by default there will zero current sequence number
 			currentSequenceNumber = 1;
 		}
-
-		var idFields = new Array('productName','hdnProductId','lineItemType','qty','searchIcon','prd_mov_select_frm','prd_mov_select_to','totalProductCount');
+		var idFields = new Array('prd_mov_itBatchName','hdnItemId','lineItemType','prd_mov_qty','searchIcon','prd_mov_select_frm','prd_mov_select_to','totalProductCount');
 		var expectedRowId = 'row'+expectedSequenceNumber;
 		for(var idIndex in idFields ) {
 			var elementId = idFields[idIndex];
-			//console.log(elementId+'//');
 			var actualElementId = elementId + currentSequenceNumber;
-			//console.log(actualElementId+'//');
 			var expectedElementId = elementId + expectedSequenceNumber;
-			//console.log(expectedElementId+'//');
-			//lineItemRow.find('#'+expectedElementId).val('');
 			lineItemRow.find('#'+actualElementId).attr('id',expectedElementId)
 					   .filter('[name="'+actualElementId+'"]').attr('name',expectedElementId);
 			lineItemRow.find('#'+expectedElementId).val('').attr('disabled', false);
@@ -79,7 +71,7 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
             var params = {'currentTarget' : currentTarget}
             var newLineItem = self.getNewLineItem(params);
             newLineItem = newLineItem.appendTo(self.lineItemsHolder);
-			newLineItem.find('input.productName').addClass('autoComplete');
+			newLineItem.find('input.prd_mov_itBatchName').addClass('autoComplete');
             newLineItem.find('.ignore-ui-registration').removeClass('ignore-ui-registration');
             vtUtils.applyFieldElementsView(newLineItem);
             app.event.trigger('post.lineItem.New', newLineItem);
@@ -90,7 +82,7 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
                 self.mapResultsToFields(newLineItem,data);
             }
         }
-        jQuery('#addProduct').on('click', addLineItemEventHandler);
+        jQuery('#addBatch').on('click', addLineItemEventHandler);
 	},
 	
 	registerLineItemAutoComplete : function(container) {
@@ -155,7 +147,8 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
 	
 	getNewLineItem : function(params) {
         var currentTarget = params.currentTarget;
-        var itemType = currentTarget.data('moduleName');
+		var itemType = currentTarget.data('moduleName');
+		//console.log(itemType);
         var newRow = this.dummyLineItemRow.clone(true).removeClass('hide').addClass(this.lineItemDetectingClass).removeClass('lineItemCloneCopy');
         newRow.find('.lineItemPopup').filter(':not([data-module-name="'+ itemType +'"])').remove();
         newRow.find('.lineItemType').val(itemType);
@@ -257,7 +250,7 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
 		for(var index in selectedLineItemsData) { 
             if(index != 0) { 
                 if(lineItemSelectedModuleName == 'Batch') {
-                    jQuery('#addProduct').trigger('click', selectedLineItemsData[index]);
+                    jQuery('#addBatch').trigger('click', selectedLineItemsData[index]);
                 } 
             }else{ 
                 itemRow.find('.lineItemType').val(lineItemSelectedModuleName);
@@ -281,23 +274,27 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
 	},
 	mapResultsToFields: function(parentRow,responseData){
 		var lineItemNameElment = jQuery('input.batchName',parentRow);
-		var lineItemNameElmentqty = jQuery('input.qty',parentRow);
+		var lineItemQty = jQuery('input.qty',parentRow);
 		var referenceModule = this.getLineItemSetype(parentRow);
 		var lineItemRowNumber = parentRow.data('rowNum');
-		for(var id in responseData){
-			console.log(responseData);
+		for(var id in responseData){ 
 			var recordId = id;
 			var recordData = responseData[id];
-			console.log(recordData.info.batchid);
 			var recordId = recordData.info.batchid;
-			var selectedName = recordData.info.batch_id;
+			var selectedName = recordData.info.batch_id; //item name
+			var selectedQty =  recordData.info.batch_qty; //Fetch batch quantity
+			//console.log(selectedQty);
+			var imgSrc = recordData.imageSource;
+			this.setImageTag(parentRow, imgSrc);
 			jQuery('input.selectedModuleId',parentRow).val(recordId);
 			jQuery('input.lineItemType',parentRow).val(referenceModule);
 			lineItemNameElment.val(selectedName);
 			lineItemNameElment.attr('disabled', 'disabled');
-			lineItemNameElmentqty.val(recordData.info.batch_qty);
+			lineItemQty.val(selectedQty);
 		}
+		//jQuery('#prd_mov_qty',parentRow).trigger('focusout');
 		jQuery('.qty',parentRow).trigger('focusout');
+
 	},
 	/**
 	* Function which will handle the actions that need to be preformed once the qty is changed like below
@@ -324,15 +321,15 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
 	 * @return : string
 	 */
 	getQuantityValue : function(lineItemRow){
-		return parseFloat(lineItemRow.find('.qty').val());
+		return parseFloat(lineItemRow.find('.prd_mov_qty').val());
 	},
 	registerClearLineItemSelection : function() {
          var self = this;
-         this.lineItemsHolder.on('click','.clearLineItem', function(e){
-            var elem = jQuery(e.currentTarget);
-            var parentElem = elem.closest('td');
-            self.clearLineItemDetails(parentElem);
-            parentElem.find('input.productName').removeAttr('disabled').val('');
+         this.lineItemsHolder.on('click','.clearLineItem', function(e){ 
+			var elem = jQuery(e.currentTarget);
+			var parentElem = elem.closest('td');
+			self.clearLineItemDetails(parentElem);
+			parentElem.find('input.prd_mov_itBatchName').removeAttr('disabled').val('');
             e.preventDefault();
          });
 	},
@@ -340,7 +337,8 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
 		var lineItemRow = this.getClosestLineItemRow(parentElem);
 		jQuery('.lineItemImage', lineItemRow).html('');
 		jQuery('input.selectedModuleId',lineItemRow).val('');
-		jQuery('input.qty',lineItemRow).val('');
+		jQuery('input.prd_mov_qty',lineItemRow).val('');
+		jQuery('input.prd_mov_itBatchName',lineItemRow).val('');
 		this.quantityChangeActions(lineItemRow);
 	},
 	/**
@@ -352,7 +350,7 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
 	},
 	registerQuantityChangeEvent : function() { 
         var self = this;
-		this.lineItemsHolder.on('focusout','.qty',function(e){
+		this.lineItemsHolder.on('focusout','.prd_mov_qty',function(e){
 			var element = jQuery(e.currentTarget);
 			var lineItemRow = element.closest('tr.'+ self.lineItemDetectingClass);
 			var quantityInStock = lineItemRow.data('quantityInStock');
@@ -391,7 +389,7 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
         var record = jQuery('[name="record"]').val();
         if (!record) {
             var container = this.lineItemsHolder;            
-            jQuery('.qty',container).trigger('focusout');
+            jQuery('.prd_mov_qty',container).trigger('focusout');
         }
     },
 	updateLineItemElementByOrder : function () {
@@ -413,7 +411,7 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
 			//by default there will zero current sequence number
 			currentSequenceNumber = 1;
 		}
-		var idFields = new Array('productName','hdnProductId','lineItemType','qty','searchIcon','prd_mov_select_frm','prd_mov_select_to','totalProductCount');
+		var idFields = new Array('prd_mov_itBatchName','hdnProductId','lineItemType','prd_mov_qty','searchIcon','prd_mov_select_frm','prd_mov_select_to','totalProductCount');
 		var expectedRowId = 'row'+expectedSequenceNumber;
 		for(var idIndex in idFields ) {
 			var elementId = idFields[idIndex];
@@ -429,6 +427,33 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
         return lineItemRow;
 	},
 	
+	ValueDependencies : function(){
+		jQuery(document).on('change','.down',function(){
+			var vl = jQuery(this).val(); 
+			var k = jQuery(this).parents('tr.lineItemRow');
+			k.find('select.down1 option').each(function(){ 
+				if(jQuery(this).val() =='Fettling Grinding' && vl == 'Shot blasting'){
+					jQuery(this).removeAttr('disabled');
+					k.find('select.down1').val('Fettling Grinding');
+				} else if(jQuery(this).val() =='Painting' && vl == 'Fettling Grinding'){
+					jQuery(this).removeAttr('disabled');
+					k.find('select.down1').val('Painting');
+				} else if(jQuery(this).val() =='Crating' && vl == 'Painting'){
+					jQuery(this).removeAttr('disabled');
+					k.find('select.down1').val('Crating');
+				} else if(jQuery(this).val() =='Warehouse' && vl == 'Crating'){
+					jQuery(this).removeAttr('disabled');
+					k.find('select.down1').val('Warehouse');
+				}else if(jQuery(this).val() =='' && vl == ''){
+					jQuery(this).removeAttr('disabled');
+					k.find('select.down1').val('');
+				} else {
+					jQuery(this).attr('disabled',true);
+				}
+			});
+		})
+	},
+
 	
 	registerBasicEvents: function(container){
 		this._super(container);
@@ -438,6 +463,7 @@ Vtiger_Edit_Js("BatchInventory_Edit_Js", {
 		this.registerLineItemEvents();
 		this.checkLineItemRow();
 		this.registerLineItemAutoComplete();
+		this.ValueDependencies();
 		 
 	}
  });

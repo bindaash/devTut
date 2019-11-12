@@ -28,7 +28,7 @@ Class BatchInventory_Edit_View extends Vtiger_Edit_View {
 			$recordModel = Vtiger_Record_Model::getInstanceById($record, $moduleName);
 			//$currencyInfo = $recordModel->getCurrencyInfo();
 			//$taxes = $recordModel->getProductTaxes();
-			$relatedProducts = $recordModel->getProducts();
+			$relatedProducts = $recordModel->getItemBatch();
 			//While Duplicating record, If the related record is deleted then we are removing related record info in record model
 			$mandatoryFieldModels = $recordModel->getModule()->getMandatoryFieldModels();
 			foreach ($mandatoryFieldModels as $fieldModel) {
@@ -41,40 +41,33 @@ Class BatchInventory_Edit_View extends Vtiger_Edit_View {
 			}
 		} elseif (!empty($record)) { 
 			$recordModel = BatchInventory_Record_Model::getInstanceById($record, $moduleName);
-			$relatedProducts = $recordModel->getProducts();
+			$relatedProducts = $recordModel->getItemBatch();
 			//echo"<pre>";print_r($relatedProducts); exit('OPut');
 			$viewer->assign('RECORD_ID', $record);
 			$viewer->assign('MODE', 'edit');
 			//echo"<pre>";print_r($viewer); exit(0);
 		}else{ 
 			$recordModel = Vtiger_Record_Model::getCleanInstance($moduleName);
-			//The creation of Inventory record from action and Related list of product/service detailview the product/service details will calculated by following code
-			if ($request->get('product_id') || $sourceModule === 'Products' || $request->get('productid')) {
+			//echo"<pre>";print_r($recordModel); die('Hy');
+			//The creation of Inventory record from action and Related list of product/service detailview the batch details will calculated by following code
+			if ($request->get('batch_id') || $sourceModule === 'Batch' || $request->get('batchid')) {
 				if($sourceRecord) {
 					$productRecordModel = Products_Record_Model::getInstanceById($sourceRecord);
-				} else if($request->get('product_id')) {
+				} else if($request->get('batch_id')) {
 					$productRecordModel = Products_Record_Model::getInstanceById($request->get('product_id'));
-				} else if($request->get('productid')) {
+				} else if($request->get('batchid')) {
 					$productRecordModel = Products_Record_Model::getInstanceById($request->get('productid'));
 				}
 				$relatedProducts = $productRecordModel->getDetailsForInventoryModule($recordModel);
 			} /*else { 
-				 echo"<pre>";print_r($sourceRecord); die('Hy');
+				echo"<pre>";print_r($sourceRecord); die('Hy');
 				$parentRecordModel = Vtiger_Record_Model::getInstanceById($sourceRecord, $sourceModule);
 				$recordModel->setParentRecordData($parentRecordModel);
 				
 			} */
 		}
 		$moduleModel = $recordModel->getModule();
-		/*$fieldList = $moduleModel->getFields();
-		//echo"<pre>";print_r($fieldList); die('fr');
-		$requestFieldList = array_intersect_key($request->getAllPurified(), $fieldList);
-		foreach($requestFieldList as $fieldName=>$fieldValue) {
-			$fieldModel = $fieldList[$fieldName]; 
-			if($fieldModel->isEditable()) {
-				$recordModel->set($fieldName, $fieldModel->getDBInsertValue($fieldValue));
-			}
-		}*/
+		
 		$recordStructureInstance = Vtiger_RecordStructure_Model::getInstanceFromRecordModel($recordModel, Vtiger_RecordStructure_Model::RECORD_STRUCTURE_MODE_EDIT);
 
 		$viewer->assign('VIEW_MODE', "fullForm");
@@ -105,8 +98,8 @@ Class BatchInventory_Edit_View extends Vtiger_Edit_View {
 		$viewer->assign('USER_MODEL', Users_Record_Model::getCurrentUserModel());
 		$viewer->assign('RELATED_PRODUCTS', $relatedProducts);
 		
-		$productModuleModel = Vtiger_Module_Model::getInstance('Products');
-		$viewer->assign('PRODUCT_ACTIVE', $productModuleModel->isActive());
+		//$productModuleModel = Vtiger_Module_Model::getInstance('Products');
+		//$viewer->assign('PRODUCT_ACTIVE', $productModuleModel->isActive());
 		// added to set the return values
 		if ($request->get('returnview')) {
 			$request->setViewerReturnValues($viewer);

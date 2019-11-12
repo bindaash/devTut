@@ -882,66 +882,55 @@ function saveMovementProdBatchDetails(&$focus, $module, $update_prod_stock='fals
 	$id=$focus->id;
 	$log->debug("Entering into function saveMovementProdBatchDetails($module).");
 	$ext_prod_arr = Array();
-	$tot_no_prod = $_REQUEST['totalProductCount'];
+	$tot_no_batch = $_REQUEST['totalProductCount'];
 	$id = $_REQUEST['currentid'];
 	$record_id = $_REQUEST['record'];
 	//echo"<pre>";print_r($_REQUEST); die('tr');
-	if($id){
-		$prod_seq=1;
-		for($i=1; $i<=$tot_no_prod; $i++)
-		{  	$prod_id = vtlib_purify($_REQUEST['hdnProductId'.$i]);
-			$qty = vtlib_purify($_REQUEST['qty'.$i]);
+	if($id){ //echo $id; die;
+		$batch_seq=1;
+		for($i=1; $i<=$tot_no_batch; $i++)
+		{  	$batchId = vtlib_purify($_REQUEST['hdnItemId'.$i]);
+			$qty = vtlib_purify($_REQUEST['prd_mov_qty'.$i]);
 			$select_frm = vtlib_purify($_REQUEST['prd_mov_select_frm'.$i]);
 			$select_to = vtlib_purify($_REQUEST['prd_mov_select_to'.$i]);
 			$item_type = vtlib_purify($_REQUEST['lineItemType'.$i]);
-			if($i==1){ 
+			/*  if($i==1){ 
 			//UPDATE `vtiger_movementrel` SET `id`=[value-1]
 			$tem_arr="SELECT MAX(lineitem_id) AS max_id FROM vtiger_movementrel";
 			$max_ids = $adb->pquery($tem_arr);
 			$max_id = $adb->query_result($max_ids, 0, 'max_id');
 			$query_up = 'UPDATE vtiger_movementrel SET itemid =?, sequence_no=?, quantity=?, select_frm=?, select_to=?, lineItem_type=? WHERE lineitem_id=?'; 
-			$qparams_up = array($prod_id,$prod_seq,$qty,$select_frm,$select_to,$item_type,$max_id); 
+			$qparams_up = array($batchId,$batch_seq,$qty,$select_frm,$select_to,$item_type,$max_id);
+			//print_r($qparams_up); die('Imp');
 			$adb->pquery($query_up,$qparams_up); 
-			} else { //INSERT vtiger_movementrel
+			} else { */  //INSERT vtiger_movementrel
 			$query = 'INSERT INTO vtiger_movementrel(id, itemid, sequence_no, quantity, select_frm, select_to, lineItem_type)
 						VALUES(?,?,?,?,?,?,?)';
-			$qparams = array($id,$prod_id,$prod_seq,$qty,$select_frm,$select_to,$item_type);
-			$adb->pquery($query,$qparams);	
-			}	
+			$qparams = array($id,$batchId,$batch_seq,$qty,$select_frm,$select_to,$item_type); 
+			//echo($id.'|'.$batchId.'|'.$batch_seq.'|'.$qty.'|'.$select_frm.'|'.$select_to.'|'.$item_type);die;
+			$adb->pquery($query,$qparams);	//die;
+			//}	
 		$lineitem_id = $adb->getLastInsertID();
-		$prod_seq++;
+		$batch_seq++;
 		}//exit('FORout');
 	}
 	if($record_id){
 		$line_select = 'DELETE FROM vtiger_movementrel WHERE id=?';
 		$mov_id=array($record_id);
 		$line_item_all = $adb->pquery($line_select,$mov_id);
-		$prod_seq=1;
-		for($i=1; $i<=$tot_no_prod; $i++)
-		{  	$prod_id = vtlib_purify($_REQUEST['hdnProductId'.$i]);
-			$qty = vtlib_purify($_REQUEST['qty'.$i]);
+		$batch_seq=1;
+		for($i=1; $i<=$tot_no_batch; $i++)
+		{  	$batch_id = vtlib_purify($_REQUEST['hdnItemId'.$i]);
+			$qty = vtlib_purify($_REQUEST['prd_mov_qty'.$i]);
 			$select_frm = vtlib_purify($_REQUEST['prd_mov_select_frm'.$i]);
 			$select_to = vtlib_purify($_REQUEST['prd_mov_select_to'.$i]);
 			$item_type = vtlib_purify($_REQUEST['lineItemType'.$i]);
-			//echo"<pre>";print_r($_REQUEST); 
 			$query = 'INSERT INTO vtiger_movementrel(id, itemid, sequence_no, quantity, select_frm, select_to, 	lineItem_type)
 						VALUES(?,?,?,?,?,?,?)';
-			$qparams = array($record_id,$prod_id,$prod_seq,$qty,$select_frm,$select_to,$item_type);
+			$qparams = array($record_id,$batch_id,$batch_seq,$qty,$select_frm,$select_to,$item_type);
+			//print_r($qparams); die;
 			$adb->pquery($query,$qparams);	
-			/*if($_REQUEST['record'] != ''){  
-				//$record_id = $_REQUEST['record'];
-				//UPDATE vtiger_movementrel in line item in edit view mode
-				$line_item = 'SELECT lineitem_id,sequence_no FROM vtiger_movementrel WHERE id=? AND sequence_no=?';
-				$line_arr=array($record_id,$prod_seq);
-				$line_item_id = $adb->pquery($line_item,$line_arr);
-				$line_id = $adb->query_result($line_item_id, 0, 'lineitem_id');
-				$sequence_no = $adb->query_result($line_item_id, 0, 'sequence_no');
-				$query_upd = 'UPDATE vtiger_movementrel SET itemid =?, quantity=?, select_frm=?, select_to=?, lineItem_type=? WHERE id=? AND lineitem_id=? AND sequence_no=?'; 
-				$qparams_upd = array($prod_id,$qty,$select_frm,$select_to,$item_type,$record_id,$line_id,$sequence_no); 
-				$adb->pquery($query_upd,$qparams_upd); 
-			}*/
-		//$lineitem_id = $adb->getLastInsertID();
-		$prod_seq++;	
+		$batch_seq++;	
 		}//exit('FOrLoop');	
 	}
 	$log->debug("Exit from function saveMovementProdBatchDetails($module).");

@@ -48,8 +48,8 @@ class BatchInventory_Detail_View extends Vtiger_Detail_View {
 		$recordId = $request->get('record');
 		$moduleName = $request->getModule();
 		$recordModel = Inventory_Record_Model::getInstanceById($recordId);
-		$relatedProducts = $recordModel->getProducts();
-		//echo"<pre>";print_r($relatedProducts);exit('End');
+		$relatedProducts = $recordModel->getItemBatch();
+		//echo"<pre>";print_r($relatedProducts);exit('1st End');
 		$finalDetails = $relatedProducts[1];
 		$relatedProducts[1] = $finalDetails;
 		$productsCount = count($relatedProducts);
@@ -75,7 +75,7 @@ class BatchInventory_Detail_View extends Vtiger_Detail_View {
 		$moduleName = $request->getModule();
 		$recordModel = Inventory_Record_Model::getInstanceById($record);
 		//$recordModel = Vtiger_Record_Model::getInstanceById($productId);
-		$relatedProducts = $recordModel->getProducts();
+		$relatedProducts = $recordModel->getItemBatch();
 		//##Final details convertion started
 		//$finalDetails = $relatedProducts[1]['final_details'];
 		$finalDetails = $relatedProducts[1];
@@ -83,6 +83,7 @@ class BatchInventory_Detail_View extends Vtiger_Detail_View {
 		//##Final details convertion ended
 		//##Product details convertion started
 		$productsCount = count($relatedProducts);
+		//echo"<pre>";print_r($productsCount);exit('1st End');
 		for ($i=1; $i<=$productsCount; $i++) {
 			$product = $relatedProducts[$i];
 

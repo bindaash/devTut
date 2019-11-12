@@ -13,7 +13,7 @@
 {assign var=BLOCK_FIELDS value=$RECORD_STRUCTURE.$LINE_ITEM_BLOCK_LABEL}
 {assign var=BLOCK_LABEL value=$LINE_ITEM_BLOCK_LABEL}
 {assign var="FINAL" value=$RELATED_PRODUCTS}	
-{*$LINEITEM_FIELDS['quantity']|@var_dump*}
+{*$RELATED_PRODUCTS|@var_dump*}
 							
 <input type="hidden" name="totalProductCount" id="totalProductCount" value="1" />
 	<div name='editContent'>
@@ -54,8 +54,8 @@
 				<div>
 					<div class="btn-toolbar">
 						<span class="btn-group">
-							<button type="button" class="btn btn-default" id="addProduct" data-module-name="Products" >
-								<i class="fa fa-plus"></i>&nbsp;&nbsp;<strong>{vtranslate('LBL_ADD_PRODUCT',$MODULE)}</strong>
+							<button type="button" class="btn btn-default" id="addBatch" data-module-name="Batch" >
+								<i class="fa fa-plus"></i>&nbsp;&nbsp;<strong>{vtranslate('LBL_ADD_BATCH',$MODULE)}</strong>
 							</button>
 						</span>
 					</div>
