@@ -1,6 +1,5 @@
 # devTut
-/** 
- * PHP Copyright © 2019 Biraj Sharma
+* PHP Copyright © 2019 Biraj Sharma
  * This file is part of PHP Copyright.
  * PHP Copyright is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -12,4 +11,5 @@
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
  * along with PHP Copyright.  If not, see <http://www.gnu.org/licenses/>.
- */
+ 
+N.B: This project is only for demo and learning pupose. 
