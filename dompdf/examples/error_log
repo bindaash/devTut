@@ -1,0 +1,8 @@
+[20-Jun-2019 01:24:52 America/Chicago] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[20-Jun-2019 01:24:52 America/Chicago] PHP Notice:  Undefined index: warehouse in /home2/pvvaidya/public_html/sif/dompdf/examples/report_summary_of_warehouse.php on line 15
+[20-Jun-2019 01:24:52 America/Chicago] PHP Notice:  Undefined index: warehouse in /home2/pvvaidya/public_html/sif/dompdf/examples/report_summary_of_warehouse.php on line 15
+[20-Jun-2019 01:46:30 America/Chicago] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[20-Jun-2019 01:46:30 America/Chicago] PHP Notice:  Undefined index: warehouse in /home2/pvvaidya/public_html/sif/dompdf/examples/report_summary_of_warehouse.php on line 15
+[20-Jun-2019 02:53:42 America/Chicago] PHP Notice:  Undefined index: core in /home2/pvvaidya/public_html/sif/dompdf/examples/report_summary_of_core.php on line 18
+[20-Jun-2019 02:53:42 America/Chicago] PHP Notice:  Undefined index: core in /home2/pvvaidya/public_html/sif/dompdf/examples/report_summary_of_core.php on line 18
+[20-Jun-2019 02:59:38 America/Chicago] PHP Parse error:  syntax error, unexpected '$batch' (T_VARIABLE) in /home2/pvvaidya/public_html/sif/modules/BatchMovement/BatchSerchCore.php on line 36

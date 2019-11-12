@@ -1,0 +1,83 @@
+{*********************************************************************************** * The contents of this file are subject to the vtiger CRM Public License Version 1.1
+ * ("License"); You may not use this file except in compliance with the License
+ * The Original Code is: vtiger CRM Open Source
+ * The Initial Developer of the Original Code is vtiger.
+ * Portions created by vtiger are Copyright (C) vtiger.
+ * All Rights Reserved.
+ *************************************************************************************}
+{strip}
+	{assign var="batchDeleted" value="batchDeleted"|cat:$row_no}
+	{assign var="deleted" value="deleted"|cat:$row_no}
+    {assign var="entityType" value=$data.$entityIdentifier}
+    {assign var="entityIdentifier" value="entityType"|cat:$row_no}
+    {assign var="batcmov_select_frm" value="batcmov_select_frm"|cat:$row_no}
+    {assign var="batcmov_select_to" value="batcmov_select_to"|cat:$row_no}
+	{assign var="hdnBatchId" value="hdnBatchId"|cat:$row_no}
+	{assign var="batchId" value=$data[$hdnBatchId]}
+    {assign var="batchName" value="batchName"|cat:$row_no}
+    {assign var="quantity" value="quantity"|cat:$row_no}
+	{assign var="batchcode" value="batchcode"|cat:$row_no}
+	{assign var="image" value="productImage"|cat:$row_no}
+{*debug*}
+{*$data|@var_dump*}
+	
+	<td style="text-align:center;">		
+	<i class="fa fa-trash deleteRow cursorPointer" title="{vtranslate('LBL_DELETE',$MODULE)}"></i>	
+		&nbsp;<a><img src="{vimage_path('drag.png')}" border="0" title="{vtranslate('LBL_DRAG',$MODULE)}"/></a>		
+		<input type="hidden" class="rowNumber" value="{$row_no}" />	
+	</td>
+	<td>			
+	<!-- Batch Re-Ordering Feature Code Addition ends -->			
+	<div class="itemNameDiv form-inline">				
+		<div class="row">					
+				<div class="col-lg-10">
+				<div class="input-group" style="width:100%">
+					<input type="text" id="{$batchcode}" name="{$batchcode}" value="{$data.$batchcode}" class="batchcode form-control {if $row_no neq 0} autoComplete {/if} " placeholder="{vtranslate('LBL_TYPE_SEARCH',$MODULE)}"
+											   data-rule-required=true {if !empty($data.$batchcode)} disabled="disabled" {/if}>
+				{if !$data.$batchDeleted}
+					<span class="input-group-addon cursorPointer clearLineItem" title="{vtranslate('LBL_CLEAR',$MODULE)}">
+						<i class="fa fa-times-circle"></i>
+					</span>
+				{/if}														
+					<input type="hidden" id="{$hdnBatchId}" name="{$hdnBatchId}" value="{$data.$hdnBatchId}" class="selectedModuleId"/>							
+					<input type="hidden" id="lineItemType{$row_no}" name="lineItemType{$row_no}" value="{$data.$entityIdentifier}" class="lineItemType"/>							
+						<span class="lineItemPopup cursorPointer" data-popup="BatchPopup" title="{vtranslate('Batch',$MODULE)}" data-module-name="Batch" data-field-name="batchid">{Vtiger_Module_Model::getModuleIconPath('Batch')}</span>
+					<div class="col-lg-2">
+					</div>						
+				</div>					
+			</div>				
+		</div>			
+	</div>
+	</td>	
+	<td>		
+	<input id="{$quantity}" name="{$quantity}" type="text" class="quantity smallInputBox" value="{$data.$quantity}"/>
+	</td>
+	<td>
+		<div align="left">
+			<select id="{$batcmov_select_frm}" name="{$batcmov_select_frm}" data-fieldname="batcmov_select_frm" data-fieldtype="picklist" class="select inputElement lineItem" type="picklist">
+			<option value="Starts"  {if trim(decode_html($data.$batcmov_select_frm)) eq trim('Starts')} selected 
+			{/if}> 
+			Starts</option>
+			<option value="Molding" 
+			{if trim(decode_html($data.$batcmov_select_frm)) eq trim('Molding')} selected 
+			{/if}>
+			Molding</option> 
+			</select>
+		</div>
+	</td>		
+	<td>
+		<div align="left">
+			<select id="{$batcmov_select_to}" name="{$batcmov_select_to}" data-fieldname="{$batcmov_select_to}" data-fieldtype="picklist" class="select inputElement lineItem" type="picklist">
+				<option value="">Select an Option</option>
+				<option 
+				{if trim(decode_html($data.$batcmov_select_to)) eq trim('Molding')} selected 
+				{/if}>
+				Molding</option>
+				<option 
+				{if trim(decode_html($data.$batcmov_select_to)) eq trim('Shot blasting')} selected 
+				{/if}>
+				Shot blasting</option>
+			</select>
+		</div>
+	</td>
+{/strip}

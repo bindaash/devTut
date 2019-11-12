@@ -1,0 +1,35 @@
+.frt{padding:0;}
+.frt h1{ text-align:center; font-size:25px; text-transform:capitalize; font-weight:600;}
+.frt span{ font-size:20px;}
+.frt select{
+	width: 200px;
+	border: 1px solid #ccc;
+	border-radius: 0;
+	height: 32px;
+	margin: 15px 0;
+}
+.batch_report .table-responsive{overflow-x: visible;}
+.frt h3 {
+    font-size: 18px;
+    margin: 0;
+    padding: 2px 0;
+}
+ .show_rep{
+    background: green;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+}
+.select_rep_bat{
+
+    width: 100%;
+    height: 30px;
+    border: 1px solid #ccc;
+
+}
+.select_rep_bat{
+	width: 100%;
+    height: 30px;
+    border: 1px solid #ccc;
+}
+.floatThead-wrapper{z-index: 1;}
