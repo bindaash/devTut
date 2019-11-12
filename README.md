@@ -12,4 +12,4 @@
  * You should have received a copy of the GNU General Public License
  * along with PHP Copyright.  If not, see <http://www.gnu.org/licenses/>.
  
-N.B: This project is only for demo and learning pupose. 
+N.B: This project is only for demo and learning purpose. 
